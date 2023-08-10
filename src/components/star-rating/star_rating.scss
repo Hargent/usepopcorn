@@ -1,0 +1,22 @@
+.rating {
+	&__container {
+		display: flex;
+		align-items: center;
+		gap: 16px;
+	}
+	&__stars {
+		display: flex;
+		align-items: center;
+		// gap: 4px;
+	}
+	&__rate {
+		line-height: 1;
+		margin: 0;
+	}
+	&__star {
+		height: 48px;
+		width: 48px;
+		display: block;
+		cursor: pointer;
+	}
+}

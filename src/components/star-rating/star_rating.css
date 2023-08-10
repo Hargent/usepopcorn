@@ -1,0 +1,19 @@
+.rating__container {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.rating__stars {
+  display: flex;
+  align-items: center;
+}
+.rating__rate {
+  line-height: 1;
+  margin: 0;
+}
+.rating__star {
+  height: 48px;
+  width: 48px;
+  display: block;
+  cursor: pointer;
+}/*# sourceMappingURL=star_rating.css.map */
