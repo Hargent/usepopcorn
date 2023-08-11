@@ -6,18 +6,31 @@ import { useState } from "react";
 
 // import React from "react";
 
-const StarRating = ({ maxRating = 5 }) => {
-	const [rating, setRating] = useState(0);
+const StarRating = ({
+	maxRating = 5,
+	color = "#fcc419",
+	size = 48,
+	className = "",
+	messages = [],
+	defaultRating = 0,
+	onSetRating
+}) => {
+	const [rating, setRating] = useState(defaultRating);
 	const [tempRating, setTempRating] = useState(0);
 
 	const handleRating = rating => {
 		setRating(rating);
+		onSetRating(rating);
 	};
 	const handleMouseEnter = value => {
 		setTempRating(value);
 	};
 	const handleMouseLeave = value => {
 		setTempRating(value);
+	};
+	const textStyle = {
+		color: color,
+		fontSize: `${size / 1.5}px`
 	};
 
 	return (
@@ -26,6 +39,9 @@ const StarRating = ({ maxRating = 5 }) => {
 				{Array.from({ length: maxRating }, (_, index) => {
 					return (
 						<Star
+							size={size}
+							color={color}
+							customClass={className}
 							key={index + 1}
 							onRate={() => handleRating(index + 1)}
 							full={
@@ -40,12 +56,22 @@ const StarRating = ({ maxRating = 5 }) => {
 					);
 				})}
 			</div>
-			<p className="rating__rate">{tempRating || rating || ""}</p>
+			<p className="rating__rate" style={textStyle}>
+				{messages.length === maxRating
+					? messages[tempRating !== 0 ? tempRating - 1 : rating - 1]
+					: tempRating || rating || ""}
+			</p>
 		</div>
 	);
 };
 StarRating.propTypes = {
-	maxRating: PropTypes.number
+	maxRating: PropTypes.number,
+	color: PropTypes.string,
+	size: PropTypes.number,
+	className: PropTypes.string,
+	messages: PropTypes.arrayOf(String),
+	defaultRating: PropTypes.number,
+	onSetRating: PropTypes.func
 };
 
 export default StarRating;
