@@ -3,18 +3,23 @@ import WatchedMovie from "../watchedmovie/watchedmovie";
 
 // import React from "react";
 
-const WatchedList = ({ watched }) => {
+const WatchedList = ({ watched, onDeleteWatched }) => {
 	return (
 		<ul className="list">
 			{watched.map(movie => (
-				<WatchedMovie movie={movie} key={movie.imdbID} />
+				<WatchedMovie
+					movie={movie}
+					key={movie.imdbID}
+					onDeleteWatched={onDeleteWatched}
+				/>
 			))}
 		</ul>
 	);
 };
 
 WatchedList.propTypes = {
-	watched: PropTypes.arrayOf(Object)
+	watched: PropTypes.arrayOf(Object),
+	onDeleteWatched: PropTypes.func
 };
 
 export default WatchedList;

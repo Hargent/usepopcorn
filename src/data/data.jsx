@@ -39,8 +39,5 @@ const tempWatchedData = [
 		userRating: 9
 	}
 ];
-const GetData = async ()=>{
-	const data = await fetch("http://www.omdbapi.com/?apikey=[yourkey]&");
-}
 
 export { tempMovieData, tempWatchedData };

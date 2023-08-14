@@ -2,11 +2,14 @@ import PropTypes from "prop-types";
 
 // import React from "react";
 
-const WatchedMovie = ({ movie }) => {
+const WatchedMovie = ({ movie, onDeleteWatched }) => {
+	function handleDeleteWatched(id) {
+		onDeleteWatched(id);
+	}
 	return (
 		<li key={movie.imdbID}>
-			<img src={movie.Poster} alt={`${movie.Title} poster`} />
-			<h3>{movie.Title}</h3>
+			<img src={movie.poster} alt={`${movie.title} poster`} />
+			<h3>{movie.title}</h3>
 			<div>
 				<p>
 					<span>⭐️</span>
@@ -14,19 +17,25 @@ const WatchedMovie = ({ movie }) => {
 				</p>
 				<p>
 					<span>🌟</span>
-					<span>{movie.userRating}</span>
+					<span>{movie.userRating.toFixed(1)}</span>
 				</p>
 				<p>
 					<span>⏳</span>
-					<span>{movie.runtime} min</span>
+					<span>{movie.runtime.toFixed(2)} min</span>
 				</p>
+				<button
+					onClick={() => handleDeleteWatched(movie.imdbID)}
+					className="btn-delete">
+					X
+				</button>
 			</div>
 		</li>
 	);
 };
 
 WatchedMovie.propTypes = {
-	movie: PropTypes.object
+	movie: PropTypes.object,
+	onDeleteWatched: PropTypes.func
 };
 
 export default WatchedMovie;

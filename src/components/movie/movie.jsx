@@ -2,9 +2,10 @@ import PropTypes from "prop-types";
 
 // import React from "react";
 
-const Movie = ({ movie }) => {
+const Movie = ({ movie, handleSetSelected }) => {
+	// console.log(movie.imdbID);
 	return (
-		<li key={movie.imdbID}>
+		<li key={movie.imdbID} onClick={() => handleSetSelected(movie.imdbID)}>
 			<img src={movie.Poster} alt={`${movie.Title} poster`} />
 			<h3>{movie.Title}</h3>
 			<div>
@@ -18,7 +19,8 @@ const Movie = ({ movie }) => {
 };
 
 Movie.propTypes = {
-	movie: PropTypes.object
+	movie: PropTypes.object,
+	handleSetSelected: PropTypes.func
 };
 
 export default Movie;
